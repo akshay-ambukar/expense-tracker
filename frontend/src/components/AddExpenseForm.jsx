@@ -8,6 +8,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors }
     } = useForm();
 
@@ -17,6 +18,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
             if (response.status === 201) {
                 console.log(`Expense added successfully !`);
                 onExpenseAdded(); 
+                reset();
             }
 
         } catch (error) {
@@ -25,8 +27,9 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(submitCall)} className=''>
-            <div className=''>
+        <form onSubmit={handleSubmit(submitCall)} className='bg-[#353535] text-white w-[30%] h-fit sticky top-5 p-5 py-8 pt-5 rounded-3xl flex flex-col gap-4'>
+            <h3 className='text-[23px] text-center font-semibold'>Add Expense</h3>
+            <div className='flex flex-col justify-center'>
                 <label htmlFor="title" className='label'>Title</label>
                 <input {...register("title", {
                     required: "Title is required",
@@ -34,11 +37,11 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
                         value: 3,
                         message: "Minimum 3 characters"
                     }
-                })} type="text" id="title" className='' />
+                })} type="text" autoFocus id="title" className='border border-gray-300 rounded-lg px-3 py-1 w-full text-white' />
             </div>
-            {errors.title && <div className='title'>{errors.title.message}</div>}
+            {errors.title && <div className='text-red-500 text-[14px]'>{errors.title.message}</div>}
 
-            <div className=''>
+            <div className='flex flex-col justify-center'>
                 <label htmlFor="amount" className='label'>Amount</label>
                 <input {...register("amount", {
                     required: "Amount is required",
@@ -46,15 +49,15 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
                         value: 1,
                         message: "Amount must be greater than 0s"
                     }
-                })} type="number" id="amount" className='' />
+                })} type="number" id="amount" className='border border-gray-300 rounded-lg px-3 py-1 w-full text-white' />
             </div>
-            {errors.amount && <div className='amount'>{errors.amount.message}</div>}
+            {errors.amount && <div className='text-red-500 text-[14px]'>{errors.amount.message}</div>}
 
-            <div className=''>
+            <div className='flex flex-col justify-center'>
                 <label htmlFor="name" className='label'>Category</label>
                 <select {...register("category", {
                     required: "Please select a category !"
-                })} id="category" className=''>
+                })} id="category" className='border border-gray-300 rounded-lg px-3 py-1 w-full text-white bg-[#353535]'>
                     <option value="">-- Choose Category --</option>
                     <option value="Food">Food</option>
                     <option value="Travel">Travel</option>
@@ -67,19 +70,20 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
                     <option value="Donation">Donation</option>
                 </select>
             </div>
-            {errors.category && <div className='category'>{errors.category.message}</div>}
+            {errors.category && <div className='text-red-500 text-[14px]'>{errors.category.message}</div>}
 
-            <div className=''>
-                <label htmlFor="description" className='label'>Description</label>
+            <div className='flex flex-col justify-center'>
+                <label htmlFor="description" className='label'>Description (Optional)</label>
                 <textarea
                     {...register("description", {
                         maxLength: { value: 200, message: "Description too long (max 200 chars)" }
                     })}
+                    className='border border-gray-300 rounded-lg px-3 py-1 w-full text-white'
                 />
             </div>
-            {errors.description && <div className='description'>{errors.description.message}</div>}
+            {errors.description && <div className='text-red-500 text-[14px]'>{errors.description.message}</div>}
 
-            <button type="submit">Submit</button>
+            <button type="submit" className='bg-blue-800 hover:bg-blue-900 text-white w-full py-1 rounded-lg cursor-pointer'>Add Expense</button>
         </form>
     )
 }
