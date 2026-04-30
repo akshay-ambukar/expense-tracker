@@ -31,7 +31,7 @@ const SignupPage = () => {
 
   return (
     <div className='bg-slate-700 min-h-screen flex flex-col justify-center items-center'>
-      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[30%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[85%] md:w-[40%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
         <h2 className='text-[26px] text-center font-semibold'>Register</h2>
         <div className='flex flex-col justify-center'>
           <label htmlFor="name" className='label'>Name</label>
@@ -74,7 +74,7 @@ const SignupPage = () => {
         {errors.password && <div className='text-red-500 text-[14px]'>{errors.password.message}</div>}
 
         <div className="flex flex-col gap-3 items-center justify-center mt-5">
-        <button type="submit" className='bg-blue-900 text-white w-full py-2 rounded-lg cursor-pointer'>Register</button>
+        <button type="submit" className='bg-blue-800 active:bg-blue-900 text-white w-full py-2 rounded-lg cursor-pointer'>Register</button>
         <p className='text-sm text-gray-500'>
           Already have an account {' '}
           <Link to="/login" className='text-blue-700 text-[16px] cursor-pointer'>Login</Link>

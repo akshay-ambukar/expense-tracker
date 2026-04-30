@@ -27,7 +27,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(submitCall)} className='bg-[#353535] text-white w-[30%] h-fit sticky top-5 p-5 py-8 pt-5 rounded-3xl flex flex-col gap-4'>
+        <form onSubmit={handleSubmit(submitCall)} className='bg-[#353535] text-white w-full md:w-[45%] lg:w-[30%] p-5 py-8 pt-5 rounded-3xl flex flex-col gap-3 md:gap-5 md:pb-3'>
             <h3 className='text-[23px] text-center font-semibold'>Add Expense</h3>
             <div className='flex flex-col justify-center'>
                 <label htmlFor="title" className='label'>Title</label>
@@ -54,7 +54,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
             {errors.amount && <div className='text-red-500 text-[14px]'>{errors.amount.message}</div>}
 
             <div className='flex flex-col justify-center'>
-                <label htmlFor="name" className='label'>Category</label>
+                <label htmlFor="category" className='label'>Category</label>
                 <select {...register("category", {
                     required: "Please select a category !"
                 })} id="category" className='border border-gray-300 rounded-lg px-3 py-1 w-full text-white bg-[#353535]'>
@@ -83,7 +83,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
             </div>
             {errors.description && <div className='text-red-500 text-[14px]'>{errors.description.message}</div>}
 
-            <button type="submit" className='bg-blue-800 hover:bg-blue-900 text-white w-full py-1 rounded-lg cursor-pointer'>Add Expense</button>
+            <button type="submit" className='bg-blue-800 active:bg-blue-900 text-white w-full py-1 rounded-lg cursor-pointer'>Add Expense</button>
         </form>
     )
 }

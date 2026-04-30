@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   return (
     <div className='bg-slate-700 min-h-screen flex flex-col justify-center items-center'>
-      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[30%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[85%] md:w-[40%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
         <h2 className='text-[26px] text-center font-semibold'>Login</h2>
         <div className='flex flex-col justify-center'>
           <label htmlFor="email" className='label'>Email</label>
@@ -61,7 +61,7 @@ const LoginPage = () => {
         <div className="flex flex-col gap-3 items-center justify-center mt-5">
           <button
             type="submit"
-            className='bg-blue-900 text-white w-full py-2 rounded-lg cursor-pointer'
+            className='bg-blue-800 active:bg-blue-900 text-white w-full py-2 rounded-lg cursor-pointer'
           >Login
           </button>
 
