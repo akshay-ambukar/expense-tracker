@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { Navbar, SecNav, AddExpenseForm } from '../components'
+import { Navbar, SecNav, AddExpenseForm, Loader } from '../components'
 
 
 const HomePage = () => {
   const [expenses, setExpenses] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const fetchExpenses = async () => {
@@ -13,10 +13,12 @@ const HomePage = () => {
       setIsLoading(true);
       const response = await api.get("/expenses/getExpenses");
       setExpenses(response.data.expenses);
-      setIsLoading(false);
 
     } catch (error) {
       setError("Failed to fetch expenses. Please try again!");
+
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -47,7 +49,7 @@ const HomePage = () => {
 
         <div className='min-h-[75vh] overflow-y-auto text-white bg-gray-200 md:w-[45%] md:h-50 px-7 py-2 rounded-lg border border-amber-50'>
           {isLoading && (
-            <p className='text-center text-gray-400'>Loading...</p>
+            <Loader color={`border-blue-800`} />
           )}
 
           {!isLoading && expenses.length === 0 && (
@@ -58,14 +60,26 @@ const HomePage = () => {
 
           {expenses.map((expense) => (
             <div key={expense._id} className='bg-slate-700 min-h-46 w-full flex gap-1.5 flex-col p-3 rounded-lg mt-4'>
-              <p className='flex md:justify-start border-b-gray-500'>Title : '{expense.title}'</p>
-              <p className='flex md:justify-start border-b-gray-500'>Amount : ₹{expense.amount}</p>
-              <p className='flex md:justify-start border-b-gray-500'>Category : '{expense.category}'</p>
-              <p className='flex md:justify-start border-b-gray-500 break-all'>Description : {expense.description === "" ? 'NA' : expense.description}</p>
+              <p className='flex md:justify-start border-b-gray-500'>
+                <span className='font-medium pr-1'>Title : </span> 
+                {expense.title}
+              </p>
+              <p className='flex md:justify-start border-b-gray-500'>
+                <span className='font-medium pr-1'>Amount : </span> 
+                ₹{expense.amount}
+              </p>
+              <p className='flex md:justify-start border-b-gray-500'>
+                <span className='font-medium pr-1'>Category : </span> 
+                {expense.category}
+              </p>
+              <p className='flex md:justify-start border-b-gray-500 break-all'>
+                <span className='font-medium pr-1'> Description : </span> 
+                {expense.description === "" ? 'NA' : expense.description}
+              </p>
               <div className='flex '>
                 <button
                   onClick={() => deleteExpense(expense._id)}
-                  className='w-full px-3 py-1 mt-1.5 bg-red-500 rounded-lg hover:bg-red-600 transition-colors'>
+                  className='w-full px-3 py-1 mt-1.5 bg-red-500 rounded-lg hover:bg-red-600 transition-colors cursor-pointer'>
                   Delete
                 </button>
               </div>

@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import api from '../services/api.js'
+import Loader from './Loader.jsx';
 
 const AddExpenseForm = ({ onExpenseAdded }) => {
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false)
 
     const {
         register,
@@ -14,15 +16,18 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
 
     const submitCall = async (data) => {
         try {
+            setIsLoading(true);
             const response = await api.post('/expenses/addExpense', data);
             if (response.status === 201) {
                 console.log(`Expense added successfully !`);
-                onExpenseAdded(); 
+                onExpenseAdded();
                 reset();
             }
 
         } catch (error) {
-            setError("Failed to add expense. Please try again!")
+            setError("Failed to add expense. Please try again!");
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -45,7 +50,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
                 <label htmlFor="amount" className='label'>Amount</label>
                 <input {...register("amount", {
                     required: "Amount is required",
-                    min : {
+                    min: {
                         value: 1,
                         message: "Amount must be greater than 0s"
                     }
@@ -83,7 +88,13 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
             </div>
             {errors.description && <div className='text-red-500 text-[14px]'>{errors.description.message}</div>}
 
-            <button type="submit" className='bg-blue-800 active:bg-blue-900 text-white w-full py-1 rounded-lg cursor-pointer'>Add Expense</button>
+            <button
+                type="submit"
+                disabled={isLoading}
+                className={`bg-blue-800 active:bg-blue-900 text-white w-full py-1 rounded-lg ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
+            >
+                {isLoading ? (<Loader />) : 'Add Expense'}
+            </button>
         </form>
     )
 }

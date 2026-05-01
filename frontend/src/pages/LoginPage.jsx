@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../services/api.js'
 import { useAuth } from '../context/AuthContext.jsx';
+import Loader from '../components/Loader.jsx';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [error, setError] = useState(null)
+  const [ isLoading , setIsLoading ] = useState(false);
 
   const {
     register,
@@ -17,6 +19,7 @@ const LoginPage = () => {
 
   const submitCall = async (data) => {
     try {
+      setIsLoading(true)
       const response = await api.post('/auth/login', data);
       if (response.status === 200) {
         login(response.data.user, response.data.token);
@@ -26,13 +29,16 @@ const LoginPage = () => {
 
     } catch (error) {
       setError("Invalid email or password!")
+
+    } finally {
+      setIsLoading(false);
     }
   }
 
 
   return (
     <div className='bg-slate-700 min-h-screen flex flex-col justify-center items-center'>
-      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[85%] md:w-[40%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[85%] md:w-[30%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
         <h2 className='text-[26px] text-center font-semibold'>Login</h2>
         <div className='flex flex-col justify-center'>
           <label htmlFor="email" className='label'>Email</label>
@@ -61,8 +67,10 @@ const LoginPage = () => {
         <div className="flex flex-col gap-3 items-center justify-center mt-5">
           <button
             type="submit"
-            className='bg-blue-800 active:bg-blue-900 text-white w-full py-2 rounded-lg cursor-pointer'
-          >Login
+            disabled={isLoading}
+            className={`bg-blue-800 active:bg-blue-900 text-white w-full py-2 rounded-lg ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
+          >
+            {isLoading ? (<Loader />) : 'Login'}
           </button>
 
           <p className='text-sm text-gray-500'>
