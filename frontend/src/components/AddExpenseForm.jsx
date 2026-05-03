@@ -72,7 +72,8 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
                     <option value="Bills & Recharge">Bills & Recharge</option>
                     <option value="Entertainment">Entertainment</option>
                     <option value="Health">Health</option>
-                    <option value="Donation">Donation</option>
+                    <option value="Loan">Loan</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             {errors.category && <div className='text-red-500 text-[14px]'>{errors.category.message}</div>}

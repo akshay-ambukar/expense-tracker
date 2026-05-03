@@ -53,27 +53,35 @@ const HomePage = () => {
           )}
 
           {!isLoading && expenses.length === 0 && (
-            <p className='text-center text-gray-400 h-[65vh] md:h-full flex justify-center items-center'>
-              No expenses yet! Add your first expense.
-            </p>
+            <div className='flex flex-col justify-center items-center h-[65vh] gap-3'>
+              <p className='text-center text-gray-400 h-[65vh] md:h-full flex justify-center items-center'>
+                No expenses yet! Add your first expense.
+              </p>
+            </div>
+          )}
+
+          {!isLoading && expenses.length > 0 && (
+            <div className='sticky top-0 bg-slate-800 text-white text-center py-2 rounded-lg mt-2 mb-1 font-semibold outline outline-gray-500'>
+              Total: ₹{expenses.reduce((sum, e) => sum + e.amount, 0).toLocaleString('en-IN')}
+            </div>
           )}
 
           {expenses.map((expense) => (
             <div key={expense._id} className='bg-slate-700 min-h-46 w-full flex gap-1.5 flex-col p-3 rounded-lg mt-4'>
               <p className='flex md:justify-start border-b-gray-500'>
-                <span className='font-medium pr-1'>Title : </span> 
+                <span className='font-medium pr-1'>Title : </span>
                 {expense.title}
               </p>
               <p className='flex md:justify-start border-b-gray-500'>
-                <span className='font-medium pr-1'>Amount : </span> 
+                <span className='font-medium pr-1'>Amount : </span>
                 ₹{expense.amount}
               </p>
               <p className='flex md:justify-start border-b-gray-500'>
-                <span className='font-medium pr-1'>Category : </span> 
+                <span className='font-medium pr-1'>Category : </span>
                 {expense.category}
               </p>
               <p className='flex md:justify-start border-b-gray-500 break-all'>
-                <span className='font-medium pr-1'> Description : </span> 
+                <span className='font-medium pr-1'> Description : </span>
                 {expense.description === "" ? 'NA' : expense.description}
               </p>
               <div className='flex '>
