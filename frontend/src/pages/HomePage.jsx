@@ -12,7 +12,11 @@ const HomePage = () => {
     try {
       setIsLoading(true);
       const response = await api.get("/expenses/getExpenses");
-      setExpenses(response.data.expenses);
+      const sortedExpenses = response
+        .data
+        .expenses
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+      setExpenses(sortedExpenses);
 
     } catch (error) {
       setError("Failed to fetch expenses. Please try again!");
@@ -67,7 +71,7 @@ const HomePage = () => {
           )}
 
           {expenses.map((expense) => (
-            <div key={expense._id} className='bg-slate-700 min-h-46 w-full flex gap-1.5 flex-col p-3 rounded-lg mt-4'>
+            <div key={expense._id} className='bg-slate-700 min-h-46 w-full flex gap-1.5 flex-col p-3 rounded-lg mt-4 '>
               <p className='flex md:justify-start border-b-gray-500'>
                 <span className='font-medium pr-1'>Title : </span>
                 {expense.title}

@@ -22,7 +22,7 @@ const Navbar = () => {
                     to="/"                    
                     className={({ isActive }) =>
                         `hover:text-blue-500 transition-colors cursor-pointer text-[17px] ${isActive
-                            ? " text-blue-500 font-bold"
+                            ? " text-blue-500 font-semibold"
                             : "text-gray-400 font-semibold hover:underline "
                         }`
                     }
@@ -34,7 +34,7 @@ const Navbar = () => {
                     to="/history"
                     className={({ isActive }) =>
                         `hover:text-blue-500 transition-colors cursor-pointer text-[17px] ${isActive
-                            ? " text-blue-500 font-bold"
+                            ? " text-blue-500 font-semibold"
                             : "text-gray-400 font-semibold hover:underline "
                         }`
                     }
@@ -46,7 +46,7 @@ const Navbar = () => {
                     to="/dashboard"
                     className={({ isActive }) =>
                         `hover:text-blue-500 transition-colors cursor-pointer text-[17px] ${isActive
-                            ? " text-blue-500 font-bold"
+                            ? " text-blue-500 font-semibold"
                             : "text-gray-400 font-semibold hover:underline "
                         }`
                     }

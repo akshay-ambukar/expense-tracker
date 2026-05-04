@@ -8,7 +8,7 @@ const SecNav = () => {
                 to="/"
                 className={({ isActive }) =>
                     `hover:text-blue-500 transition-colors cursor-pointer text-[13px] ${isActive
-                        ? " text-blue-500 font-bold"
+                        ? " text-blue-500 font-semibold"
                         : "text-gray-400 font-semibold hover:underline "
                     }`
                 }>
@@ -18,7 +18,7 @@ const SecNav = () => {
                 to="/history"
                 className={({ isActive }) =>
                     `hover:text-blue-500 transition-colors cursor-pointer text-[13px] ${isActive
-                        ? " text-blue-500 font-bold"
+                        ? " text-blue-500 font-semibold"
                         : "text-gray-400 font-semibold hover:underline "
                     }`
                 }>
@@ -28,7 +28,7 @@ const SecNav = () => {
                 to="/dashboard"
                 className={({ isActive }) =>
                     `hover:text-blue-500 transition-colors cursor-pointer text-[13px] ${isActive
-                        ? " text-blue-500 font-bold"
+                        ? " text-blue-500 font-semibold"
                         : "text-gray-400 font-semibold hover:underline "
                     }`
                 }>
