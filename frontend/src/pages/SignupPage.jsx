@@ -37,8 +37,8 @@ const SignupPage = () => {
   }
 
   return (
-    <div className='bg-slate-700 min-h-screen flex flex-col justify-center items-center'>
-      <form onSubmit={handleSubmit(submitCall)} className='bg-[#f0f0f0] w-[85%] md:w-[30%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
+    <div className='bg-[url("/bgImage.png")] bg-cover bg-center min-h-screen flex flex-col justify-center items-center'>
+      <form onSubmit={handleSubmit(submitCall)} className='text-white bg-transparent w-[85%] md:w-[30%] min-h-[80%] p-5 py-8 rounded-3xl flex flex-col gap-4'>
         <h2 className='text-[26px] text-center font-semibold'>Register</h2>
         <div className='flex flex-col justify-center'>
           <label htmlFor="name" className='label'>Name</label>
@@ -89,7 +89,7 @@ const SignupPage = () => {
             {isLoading ? (<Loader />) : 'Register'}
           </button>
 
-          <p className='text-sm text-gray-500'>
+          <p className='text-sm text-gray-400'>
             Already have an account {' '}
             <Link to="/login" className='text-blue-700 text-[16px] cursor-pointer'>Login</Link>
           </p>

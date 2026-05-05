@@ -104,7 +104,7 @@ const HistoryPage = () => {
 
 
 
-        <div className='min-h-[60vh] overflow-y-auto text-white bg-gray-200 w-full md:h-50 p-2 py-1 md:px-7 md:py-2 rounded-xl border border-amber-50'>
+        <div className='min-h-[60vh] overflow-y-auto text-white bg-gray-200 w-full md:h-50 p-2 py-1 md:px-7 md:py-2 rounded-lg border border-amber-50'>
           {isLoading && (
             <Loader color={`border-blue-800`} />
           )}

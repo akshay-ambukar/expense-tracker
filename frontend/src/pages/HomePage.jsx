@@ -48,10 +48,12 @@ const HomePage = () => {
       <Navbar />
       <SecNav />
 
-      <div className='flex flex-col md:flex-row gap-7 md:justify-around mx-auto pt-8 w-3/4 md:w-[90%] md:px-auto md:pb-2'>
+      <div className='flex flex-col md:flex-row gap-7 md:justify-around mx-auto pt-8 w-[90%] md:px-auto md:pb-2'>
         <AddExpenseForm onExpenseAdded={fetchExpenses} />
 
-        <div className='min-h-[75vh] overflow-y-auto text-white bg-gray-200 md:w-[45%] md:h-50 px-7 py-2 rounded-lg border border-amber-50'>
+        <h2 className='block md:hidden text-xl text-white font-semibold text-center'>All Expenses</h2>
+
+        <div className='min-h-[75vh] overflow-y-auto text-white bg-gray-200 md:w-[45%] md:h-50 px-4 md:px-7 py-2 rounded-lg border border-amber-50'>
           {isLoading && (
             <Loader color={`border-blue-800`} />
           )}

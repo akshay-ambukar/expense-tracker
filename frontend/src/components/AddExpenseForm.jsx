@@ -32,7 +32,7 @@ const AddExpenseForm = ({ onExpenseAdded }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(submitCall)} className='bg-[#353535] text-white w-full md:w-[45%] lg:w-[30%] p-5 py-8 pt-5 rounded-3xl flex flex-col gap-3 md:gap-5 md:pb-3'>
+        <form onSubmit={handleSubmit(submitCall)} className='bg-[#353535] text-white w-full md:w-[45%] lg:w-[30%] p-5 py-8 pt-5 rounded-lg flex flex-col gap-3 md:gap-5 md:pb-3'>
             <h3 className='text-[23px] text-center font-semibold'>Add Expense</h3>
             <div className='flex flex-col justify-center'>
                 <label htmlFor="title" className='label'>Title</label>
