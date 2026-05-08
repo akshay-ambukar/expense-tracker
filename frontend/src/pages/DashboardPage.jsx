@@ -85,44 +85,44 @@ const DashboardPage = () => {
 
       {isLoading && <Loader color="border-white" />}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-[80%] md:w-[80%] mx-auto mt-8 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-[80%] md:w-[60%] mx-auto mt-8 mb-8">
 
-        <div className="bg-white rounded-lg md:rounded-2xl p-3 py-2 flex gap-4 md:gap-0 md:block">
-          <p className='text-2xl md:text-4xl text-center'>💰</p>
-          <p className='md:text-xl text-lg md:text-center font-semibold'>Total Amount :</p>
-          <p className='text-center font-bold text-lg md:text-xl'>₹{totalAmount}</p>
+        <div className="bg-white rounded-lg md:rounded-lg p-3 py-2 flex gap-4 md:gap-0 md:block">
+          <p className='text-md md:text-xl text-center'>💰</p>
+          <p className='md:text-lg md:text-center font-semibold'>Total Amount :</p>
+          <p className='text-center font-bold text-[16px] md:text-lg'>₹{totalAmount}</p>
         </div>
 
-        <div className="bg-white rounded-lg md:rounded-2xl p-3 py-2 flex gap-4 md:gap-0 md:block">
-          <p className='text-2xl md:text-4xl text-center'>🧾</p>
-          <p className='md:text-xl text-lg md:text-center font-semibold'>Total Expenses :</p>
-          <p className='text-center font-bold text-lg md:text-xl'>{totalCount}</p>
+        <div className="bg-white rounded-lg md:rounded-lg p-3 py-2 flex gap-4 md:gap-0 md:block">
+          <p className='text-md md:text-xl text-center'>🧾</p>
+          <p className='md:text-lg md:text-center font-semibold'>Total Expenses :</p>
+          <p className='text-center font-bold text-[16px] md:text-lg'>{totalCount}</p>
         </div>
 
-        <div className="bg-white rounded-lg md:rounded-2xl p-3 py-2 flex gap-4 md:gap-0 md:block">
-          <p className='text-2xl md:text-4xl text-center'>📈</p>
-          <p className='md:text-xl text-lg md:text-center font-semibold'>Highest Expense :</p>
-          <div className='text-center font-bold text-lg md:text-xl'>
-            <span>{highestExpense.title?.toUpperCase() || "N/A"}</span>
-            <span> ₹{highestExpense.amount || "N/A"}</span>
+        <div className="bg-white rounded-lg md:rounded-lg p-3 py-2 flex gap-4 md:gap-0 md:block">
+          <p className='text-md md:text-xl text-center'>📈</p>
+          <p className='md:text-lg md:text-center font-semibold'>Highest Expense :</p>
+          <div className='flex flex-col md:block text-center font-bold md:text-lg'>
+            <span className='text-[14px] md:text-[16px]'>{highestExpense.title?.toUpperCase() || "N/A"}</span>
+            <span className='text-[14px] md:text-[16px]'> ₹{highestExpense.amount || "N/A"}</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg md:rounded-2xl p-3 py-2 flex gap-4 md:gap-0 md:block">
-          <p className='text-2xl md:text-4xl text-center'>🏷️</p>
-          <p className='md:text-xl text-lg md:text-center font-semibold'>Most used category :</p>
-          <p className='text-center font-bold text-lg md:text-xl'>{mostUsedCategory || "N/A"}</p>
+        <div className="bg-white rounded-lg md:rounded-lg p-3 py-2 flex gap-4 md:gap-0 md:block">
+          <p className='text-lg md:text-xl text-center'>🏷️</p>
+          <p className='md:text-lg md:text-center font-semibold'>Most used category :</p>
+          <p className='text-center font-bold text-[16px] md:text-lg'>{mostUsedCategory || "N/A"}</p>
         </div>
 
       </div>
 
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-[80%] md:w-[80%] mx-auto mt-8 pb-12'>
-        <div className='flex justify-center items-center flex-col mt-4 pb-3 border border-t-amber-50 border-l-amber-50'>
-          <p className="text-white text-xl font-bold mt-8 mb-2">Expenses by Category</p>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-[80%] md:w-[70%] mx-auto mt-8 pb-12'>
+        <div className='flex justify-center items-center flex-col mt-4 pb-3 border border-amber-50 '>
+          <p className="text-white text-xl font-bold mt-4 md:mt-6 mb-4">Expenses by Category</p>
 
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart width={400} height={300} >
+          <ResponsiveContainer width="90%" height={300}>
+            <PieChart>
               <Pie data={pieData} dataKey="value" nameKey="name" style={{ outline: 'none' }} stroke="black" strokeWidth={1}>
                 {pieData.map((entry, index) => (
                   <Cell key={index} fill={colors[index % colors.length]} />
@@ -134,14 +134,14 @@ const DashboardPage = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className='flex justify-center items-center flex-col mt-4 pb-3 border border-t-amber-50 border-l-amber-50'>
-          <p className="text-white text-xl font-bold mt-8 mb-2">Expenses by Months</p>
+        <div className='flex justify-center items-center flex-col mt-4 pb-3 border border-amber-50 '>
+          <p className="text-white text-xl font-bold mt-4 md:mt-6 mb-4">Expenses by Months</p>
 
 
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart width={500} height={300} data={barData}>
-              <XAxis dataKey="month" stroke="white" />
-              <YAxis stroke="white" />
+          <ResponsiveContainer width="90%" height={200}>
+            <BarChart data={barData}>
+              <XAxis dataKey="month" stroke="white" tick={{ fontSize: 12 }}/>
+              <YAxis stroke="white" tick={{ fontSize: 10 }} tickFormatter={(value) => `₹${value.toLocaleString('en-IN')}`} />
               <Tooltip />
               <Bar dataKey="total" fill="#36A2EB" />
             </BarChart>
@@ -149,13 +149,13 @@ const DashboardPage = () => {
         </div>
 
 
-        <div className='flex justify-center items-center flex-col mt-4 pb-3 border border-t-amber-50 border-l-amber-50 md:col-span-2'>
-          <p className="text-white text-xl font-bold mt-8 mb-2">Spending Over Time</p>
+        <div className='flex justify-center items-center flex-col mt-4 pb-3 border border-amber-50  md:col-span-2'>
+          <p className="text-white text-xl font-bold mt-4 md:mt-6 mb-4">Spending Over Time</p>
 
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart width={500} height={300} data={barData}>
-              <XAxis dataKey="month" stroke="white" />
-              <YAxis stroke="white" />
+          <ResponsiveContainer width="90%" height={200}>
+            <LineChart data={barData}>
+              <XAxis dataKey="month" stroke="white" tick={{ fontSize: 12 }}/>
+              <YAxis stroke="white" tick={{ fontSize: 10 }} />
               <Tooltip />
               <Line dataKey="total" type="monotone" stroke="#36A2EB" />
             </LineChart>

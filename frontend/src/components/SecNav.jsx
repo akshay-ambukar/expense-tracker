@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom'
 
 const SecNav = () => {
     return (
-        <div className='bg-slate-800 text-white text-[10px] h-6 flex justify-around items-center md:hidden'>
+        <div className='bg-slate-800 text-white text-[10px] h-7 flex justify-around items-center md:hidden'>
             <NavLink
                 to="/"
                 className={({ isActive }) =>
-                    `hover:text-blue-500 transition-colors cursor-pointer text-[13px] ${isActive
+                    `hover:text-blue-500 transition-colors cursor-pointer text-[14px] ${isActive
                         ? " text-blue-500 font-semibold"
                         : "text-gray-400 font-semibold hover:underline "
                     }`
@@ -17,7 +17,7 @@ const SecNav = () => {
             <NavLink
                 to="/history"
                 className={({ isActive }) =>
-                    `hover:text-blue-500 transition-colors cursor-pointer text-[13px] ${isActive
+                    `hover:text-blue-500 transition-colors cursor-pointer text-[14px] ${isActive
                         ? " text-blue-500 font-semibold"
                         : "text-gray-400 font-semibold hover:underline "
                     }`
@@ -27,7 +27,7 @@ const SecNav = () => {
             <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
-                    `hover:text-blue-500 transition-colors cursor-pointer text-[13px] ${isActive
+                    `hover:text-blue-500 transition-colors cursor-pointer text-[14px] ${isActive
                         ? " text-blue-500 font-semibold"
                         : "text-gray-400 font-semibold hover:underline "
                     }`
